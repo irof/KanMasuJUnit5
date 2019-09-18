@@ -1,5 +1,6 @@
 plugins {
     `java-library`
+    id("com.cosminpolifronie.gradle.plantuml") version "1.6.0"
 }
 
 repositories {
@@ -26,4 +27,11 @@ tasks.test {
     testLogging {
         events("passed", "skipped", "failed")
     }
+}
+
+plantUml {
+    render(mapOf(
+            "input" to "src/main/diagrams/*",
+            "output" to "build/diagrams",
+            "format" to "png"))
 }
