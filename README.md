@@ -1,11 +1,9 @@
 JUnit5完全にマスターした
 ============================================================
 
-## Goal
+関ジャバ'19 9月度の資料の素材。
 
-- JUnit5を完全マスターできる
+- https://speakerdeck.com/irof/junit-5falsekuo-zhang-ji-neng-wowan-quan-nimasutasita
 
-## ステップ
 
-1. ユーザーガイドで書き方を完全にマスターする
 
