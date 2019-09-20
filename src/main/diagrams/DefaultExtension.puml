@@ -1,0 +1,32 @@
+@startuml
+
+hide empty member
+hide circle
+
+    interface HierarchicalTestExecutorService
+
+    class NodeTestTask
+    HierarchicalTestExecutorService <|.. NodeTestTask
+    interface Node
+    NodeTestTask -r-> Node
+
+    class MutableExtensionRegistry {
+        DEFAULT_EXTENSIONS
+    }
+    note bottom of MutableExtensionRegistry
+        DEFAULT_EXTENSIONSとして以下を持っている
+        - DisabledCondition
+        - ScriptExecutionCondition
+        - TempDirectory
+        - TimeoutExtension
+        - RepeatedTestExtension
+        - TestInfoParameterResolver
+        - TestReporterParameterResolver
+    end note
+
+    ' package descriptor {
+    class JupiterEngineDescriptor
+    JupiterEngineDescriptor -l-> MutableExtensionRegistry
+    Node <|.. JupiterEngineDescriptor
+
+@enduml

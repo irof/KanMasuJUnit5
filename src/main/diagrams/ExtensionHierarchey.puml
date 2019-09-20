@@ -1,0 +1,64 @@
+@startuml
+
+hide member
+hide circle
+
+package org.junit.jupiter.api.extension {
+interface Extension
+interface InvocationInterceptor
+interface LifecycleMethodExecutionExceptionHandler
+interface TestInstanceFactory
+interface AfterTestExecutionCallback
+interface BeforeTestExecutionCallback
+interface AfterEachCallback
+interface BeforeAllCallback
+interface ExecutionCondition
+interface AfterAllCallback
+interface BeforeEachCallback
+interface TestTemplateInvocationContextProvider
+interface TestWatcher
+interface TestExecutionExceptionHandler
+interface ParameterResolver
+interface TestInstancePostProcessor
+
+'class TimeoutExtension
+'class TempDirectory
+}
+
+Extension <|-- InvocationInterceptor
+Extension <|-- LifecycleMethodExecutionExceptionHandler
+Extension <|-- TestInstanceFactory
+Extension <|-- AfterTestExecutionCallback
+Extension <|-- BeforeTestExecutionCallback
+Extension <|-- AfterEachCallback
+Extension <|-- BeforeAllCallback
+Extension <|-- ExecutionCondition
+Extension <|-- AfterAllCallback
+Extension <|-- BeforeEachCallback
+Extension <|-- TestTemplateInvocationContextProvider
+Extension <|-- TestWatcher
+Extension <|-- TestExecutionExceptionHandler
+Extension <|-- ParameterResolver
+Extension <|-- TestInstancePostProcessor
+
+
+package org.junit.jupiter.engine.execution {
+    interface AfterEachMethodAdapter
+    interface BeforeEachMethodAdapter
+}
+
+Extension <|-- AfterEachMethodAdapter
+Extension <|-- BeforeEachMethodAdapter
+
+
+
+'InvocationInterceptor <|.. TimeoutExtension
+'BeforeAllCallback <|.. TimeoutExtension
+'BeforeEachCallback <|.. TimeoutExtension
+'
+'BeforeAllCallback <|.. TempDirectory
+'BeforeEachCallback <|.. TempDirectory
+'ParameterResolver <|.. TempDirectory
+
+@enduml
+

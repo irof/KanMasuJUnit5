@@ -1,0 +1,27 @@
+@startuml
+
+hide empty member
+hide circle
+
+interface ExtensionContext {
+    Optional<AnnotatedElement> getElement()
+}
+class AbstractExtensionContext
+ExtensionContext <|.. AbstractExtensionContext
+
+AbstractExtensionContext <|-- JupiterEngineExtensionContext
+AbstractExtensionContext <|-- DynamicExtensionContext
+
+AbstractExtensionContext <|-- ClassExtensionContext
+AbstractExtensionContext <|-- MethodExtensionContext
+AbstractExtensionContext <|-- TestTemplateExtensionContext
+
+ClassExtensionContext --> AnnotatedElement
+MethodExtensionContext --> AnnotatedElement
+TestTemplateExtensionContext --> AnnotatedElement
+
+interface AnnotatedElement {
+    Annotation[] getAnnotations()
+}
+
+@enduml

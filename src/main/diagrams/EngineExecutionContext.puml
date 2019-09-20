@@ -1,0 +1,53 @@
+@startuml
+
+hide empty member
+hide circle
+
+' package platform {
+interface EngineExecutionContext <<platform>>
+
+' package jupiter {
+class JupiterEngineExecutionContext {
+    EngineExecutionListener
+    ThrowableCollector
+    JupiterConfiguration
+    TestInstancesProvider
+}
+class MutableExtensionRegistry {
+}
+
+class Engine用 {
+    DEFAULT_EXTENSIONS
+    ServiceLoaderで追加
+}
+class TestClass用 {
+    parent
+    RegisterExtensionで追加
+    TestClassに付与したExtendWithで追加
+}
+class TestMethod用 {
+    parent
+    TestMethodに付与したExtendWithで追加
+}
+TestClass用 -l-> Engine用 : parent
+TestMethod用 -l-> TestClass用 : parent
+
+MutableExtensionRegistry <|-- Engine用
+MutableExtensionRegistry <|-- TestClass用
+MutableExtensionRegistry <|-- TestMethod用
+
+interface ExtensionContext {
+    getDisplayName() : String
+    getTestInstance() : Object
+    getTestClass() : Class
+    getTestMethod() : Method
+    getStore(Namespace) : Store
+}
+
+EngineExecutionContext <|.. JupiterEngineExecutionContext
+
+JupiterEngineExecutionContext -- MutableExtensionRegistry
+JupiterEngineExecutionContext -- ExtensionContext
+
+@enduml
+

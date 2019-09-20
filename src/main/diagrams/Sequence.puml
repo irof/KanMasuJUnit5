@@ -1,0 +1,30 @@
+@startuml
+
+actor "actor" as XXX
+
+== 登録 ==
+
+create MyExtension
+XXX --> MyExtension : new
+XXX -> MutableExtensionRegistry : registerExtension(MyExtension)
+
+== 実行 ==
+
+XXX -> XXX : 拡張ポイント
+activate XXX
+
+XXX -> MutableExtensionRegistry : stream(Class<MyExtension>)
+activate MutableExtensionRegistry 
+XXX <- MutableExtensionRegistry : Stream<MyExtension>
+deactivate MutableExtensionRegistry
+
+XXX -> MyExtension : 応じた呼び出し方
+activate MyExtension
+MyExtension -> MyExtension : 処理を実行
+MyExtension -> XXX
+deactivate MyExtension
+
+deactivate XXX
+
+
+@enduml

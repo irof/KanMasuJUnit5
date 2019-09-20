@@ -1,0 +1,30 @@
+@startuml
+
+hide member
+hide circle
+
+package jupiter {
+    class "junit-jupiter"
+    class "junit-jupiter-api"
+    class "junit-jupiter-engine"
+    class "junit-jupiter-params"
+}
+
+package platform {
+    class "junit-platform-commons"
+    class "junit-platform-engine"
+    class "junit-platform-launcher"
+}
+
+"junit-jupiter" --> "junit-jupiter-params"
+
+"junit-jupiter" --> "junit-jupiter-api"
+"junit-jupiter-api" --> "junit-platform-commons"
+"junit-jupiter-api" --> "apiguardian-api"
+"junit-jupiter-api" --> "opentest4j"
+
+"junit-jupiter" --> "junit-jupiter-engine"
+"junit-jupiter-engine" --> "junit-platform-engine"
+"junit-platform-launcher" --> "junit-platform-engine"
+
+@enduml

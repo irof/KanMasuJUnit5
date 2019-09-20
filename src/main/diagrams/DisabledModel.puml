@@ -1,0 +1,35 @@
+@startuml
+
+hide empty member
+hide circle
+
+interface Extension
+
+package 実行条件を制御する拡張ポイント <<Rectangle>> {
+    interface ExecutionCondition
+    class ConditionEvaluator
+}
+
+Extension <|-- ExecutionCondition
+class DisabledCondition
+ExecutionCondition <|.. DisabledCondition
+
+package テスト実装 <<Rectangle>> {
+class Disabled
+
+class テストクラス
+class テストメソッド
+テストクラス ..> Disabled
+テストメソッド ..> Disabled
+}
+
+
+
+DisabledCondition -- Disabled
+
+ConditionEvaluator .l.> ExecutionCondition
+
+note right of DisabledCondition : アノテーションを処理するExtension実装
+note right of Disabled : Extensionが対象にするアノテーション
+
+@enduml

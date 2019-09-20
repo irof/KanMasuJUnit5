@@ -1,0 +1,25 @@
+@startuml
+
+hide member
+hide circle
+
+interface ExtendWith
+
+class ExtensionUtils
+
+class ClassBasedTestDescriptor
+class TestMethodTestDescriptor
+class TestTemplateTestDescriptor
+
+class NodeTestTask
+
+NodeTestTask --> ClassBasedTestDescriptor
+ClassBasedTestDescriptor --> ExtensionUtils
+
+NodeTestTask --> TestMethodTestDescriptor
+TestMethodTestDescriptor --> ExtensionUtils
+
+ExtensionUtils --> ExtendWith
+
+@enduml
+

@@ -1,0 +1,42 @@
+@startuml
+
+hide empty member
+hide circle
+
+class コールバック {
+TestInstancePostProcessor
+..
+BeforeAllCallback
+LifecycleMethodExecutionExceptionHandler
+BeforeEachCallback
+BeforeEachMethodAdapter
+BeforeTestExecutionCallback
+..
+TestExecutionExceptionHandler
+AfterTestExecutionCallback
+AfterEachMethodAdapter
+AfterEachCallback
+TestWatcher
+AfterAllCallback
+}
+
+interface TestInstanceFactory {
+    テストインスタンス生成
+}
+
+interface InvocationInterceptor {
+    汎用的なインターセプター
+}
+interface ExecutionCondition {
+    実行判定
+}
+
+interface TestTemplateInvocationContextProvider {
+    @TestTemplate
+}
+
+interface ParameterResolver {
+    パラメタ解決
+}
+
+@enduml

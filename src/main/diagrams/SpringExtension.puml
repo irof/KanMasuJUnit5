@@ -1,0 +1,41 @@
+@startuml
+
+hide empty member
+hide circle
+
+package junit {
+interface BeforeAllCallback
+interface AfterAllCallback
+interface BeforeEachCallback
+interface AfterEachCallback
+interface BeforeTestExecutionCallback
+interface AfterTestExecutionCallback
+interface TestInstancePostProcessor
+interface ParameterResolver
+}
+
+package "spring" {
+class SpringExtension
+class TestContextManager
+
+interface TestContext {
+}
+interface TestExecutionListener
+}
+
+ BeforeAllCallback           <|.. SpringExtension
+ AfterAllCallback            <|.. SpringExtension
+ BeforeEachCallback          <|.. SpringExtension
+ AfterEachCallback           <|.. SpringExtension
+ BeforeTestExecutionCallback <|.. SpringExtension
+ AfterTestExecutionCallback  <|.. SpringExtension
+ ParameterResolver           <|.. SpringExtension
+ TestInstancePostProcessor   <|.. SpringExtension
+
+SpringExtension -- TestContextManager
+
+TestContextManager -r- TestContext
+TestContextManager -l- "*" TestExecutionListener
+
+@enduml
+

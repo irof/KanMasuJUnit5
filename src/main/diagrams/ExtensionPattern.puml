@@ -1,0 +1,25 @@
+@startuml
+
+hide empty member
+hide circle
+
+class 拡張登録方法
+
+class ServiceLoader
+class ExtendWith
+class RegisterExtension {
+    インスタンス生成時に設定がいじれる
+}
+
+拡張登録方法 <|-- ServiceLoader
+拡張登録方法 <|-- ExtendWith
+拡張登録方法 <|-- RegisterExtension
+
+ExtendWith <|-- テストクラスに付与する
+ExtendWith <|-- テストメソッドに付与する
+
+RegisterExtension <|-- staticフィールドで登録
+RegisterExtension <|-- インスタンスフィールドで登録
+
+
+@enduml

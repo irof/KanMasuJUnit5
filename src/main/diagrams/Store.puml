@@ -1,0 +1,32 @@
+@startuml
+
+hide empty member
+hide circle
+
+interface ExtensionContext {
+    getStore(Namespace) : Store
+}
+class AbstractExtensionContext {
+    parent : ExtensionContext 
+}
+ExtensionContext <|.. AbstractExtensionContext
+
+interface Store
+
+class NamespaceAwareStore {
+    namespace: Namespace
+}
+Store <|.. NamespaceAwareStore
+
+ExtensionContext .r.> Store
+AbstractExtensionContext .r.> NamespaceAwareStore
+
+class ExtensionValuesStore {
+    parent : ExtensionValuesStore
+}
+note left of ExtensionValuesStore : getするときにparentも検索する
+
+AbstractExtensionContext --> ExtensionValuesStore : parentを指定して生成
+NamespaceAwareStore --> ExtensionValuesStore : namespaceを指定して操作
+
+@enduml

@@ -1,0 +1,14 @@
+@startuml
+
+hide member
+hide circle
+
+class "junit-platform-launcher"
+class "junit-platform-engine"
+class "junit-jupiter-engine"
+
+"junit-platform-launcher" -> "junit-platform-engine"
+"junit-platform-engine" <|-- "junit-jupiter-engine"
+
+@enduml
+

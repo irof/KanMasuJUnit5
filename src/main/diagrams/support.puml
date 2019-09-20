@@ -1,0 +1,12 @@
+@startuml
+
+hide empty member
+hide circle
+
+package org.junit.platform.commons.support {
+    class AnnotationSupport
+    class ClassSupport
+    class ReflectionSupport
+    class ModifierSupport
+}
+@enduml

@@ -9,6 +9,7 @@ repositories {
 
 dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter:5.5.2")
+    testImplementation("org.junit.platform:junit-platform-testkit:1.5.2")
 }
 
 sourceSets {
